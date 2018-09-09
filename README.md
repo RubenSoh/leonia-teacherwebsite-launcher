@@ -23,6 +23,10 @@ attribute as necessary, and place the static files on any web server or free sta
 
 ## Deployment
 
+Quick deploy with Netlify:
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://gitlab.com/rubensoh/leonia-teacherwebsite-launcher)
+
 *Note: Please go to all spreadsheets this application utilizes and press File > Publish to Web and then press the Publish button. This will
 ensure optimal performance and make the application adhere to official Google API policies.*
 
