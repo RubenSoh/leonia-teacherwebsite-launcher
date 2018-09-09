@@ -19,5 +19,6 @@
   "devDependencies": {
     "react-app-rewired": "^1.6.2",
     "worker-loader": "^2.0.0"
-  }
+  },
+  "license": "MIT"
 }
