@@ -18,17 +18,11 @@
 	margin-top: 5px;
 }
 
-.results > li:hover, .results > li:first-child {
+.results > li:hover, .results > li:first-child, .results > li:focus {
 	background-color: #dddddd;
 	border-radius: 5px;
 	cursor: pointer;
-}
-
-.results > li > a {
-	color: inherit;
-	text-decoration: inherit;
-	cursor: inherit;
-	display: block;
+	outline: none;
 }
 
 .resultModal {
@@ -45,6 +39,11 @@
 	font-size: 20px;
 	text-align: center;
 	background-color: white;
+	overflow-wrap: break-word;
+}
+
+.resultModal:focus {
+	outline: none;
 }
 
 .resultOverlay {

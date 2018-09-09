@@ -8,7 +8,11 @@
 	font-family: 'Oswald', serif;
 	text-align: center;
 	font-size: 18px;
-	opacity: 0.25;
+	opacity: 0.5;
+}
+
+.App > p.lists {
+	opacity: 0.5;
 }
 
 .search-box {
@@ -18,7 +22,7 @@
 	display: block;
 	width: calc(45% + 100px);
 	min-width: 260px;
-	border: 2px solid #22222211;
+	border: 2px solid #22222222;
 	border-radius: 5px;
 	padding: 8px;
 	transition: border 0.5s, margin-top 0.3s;
@@ -30,22 +34,23 @@
 
 .search-box:focus {
 	border: 2px solid #222;
+	outline: none;
 }
 
 .search-box::-webkit-input-placeholder {
-	opacity: 0.25;
+	opacity: 0.5;
 }
 
 .search-box::-moz-placeholder {
-	opacity: 0.25;
+	opacity: 0.5;
 }
 
 .search-box:-moz-placeholder {
-	opacity: 0.25;
+	opacity: 0.5;
 }
 
 .search-box:-ms-input-placeholder {
-	opacity: 0.25;
+	opacity: 0.5;
 }
 
 .search-box:focus::-webkit-input-placeholder {
