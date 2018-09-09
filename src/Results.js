@@ -25,7 +25,6 @@ class Results extends Component {
 		let results = this.props.results
 			.map((s, i) =>
 				<li key={String(i)}
-					skey={String(i)}
 					onClick={() =>
 						this.setState({
 							"modalOpen": true,
