@@ -37,6 +37,19 @@
 	outline: none;
 }
 
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: transparent;
+	color: black;
+	opacity: 0.5;
+	font-size: 14px;
+	font-family: 'Oswald', serif;
+	text-align: center;
+}
+
 .search-box::-webkit-input-placeholder {
 	opacity: 0.5;
 }
@@ -68,4 +81,5 @@
 .search-box:focus:-ms-input-placeholder {
 	opacity: 0;
 }
+
 

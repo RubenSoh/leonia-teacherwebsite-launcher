@@ -300,6 +300,9 @@ class App extends Component {
 						}}
 					/>
 				}
+				<div className="footer">
+					<p>Created by Ruben Soh</p>
+				</div>
 			</div>
 		);
 	}
