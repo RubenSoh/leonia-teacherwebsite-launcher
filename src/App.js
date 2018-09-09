@@ -51,6 +51,8 @@ class App extends Component {
 	};
 
 	async componentDidMount() {
+		document.title = Config.title;
+
 		this.loadLiveSpreadsheets(Config.spreadsheets);
 		this.loadCachedSpreadsheets(Config.spreadsheets);
 	}
