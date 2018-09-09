@@ -4,7 +4,7 @@
 
 }
 
-p {
+.App > p {
 	font-family: 'Oswald', serif;
 	text-align: center;
 	font-size: 18px;

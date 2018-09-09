@@ -35,10 +35,13 @@
 	position: fixed;
 	top: 40%;
 	left: 50%;
+	width: calc(45% + 100px);
 	transform: translate(-50%, -40%) !important;
 	border-radius: 10px;
+	border: 2px solid #22222211;
 	padding: 20px;
 	font-family: 'Droid Sans', sans-serif;
+	color: black;
 	font-size: 20px;
 	text-align: center;
 	background-color: white;
