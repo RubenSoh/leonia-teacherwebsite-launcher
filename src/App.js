@@ -8,18 +8,22 @@ import Results from "./Results.js";
 import Config from "./config";
 import credentials from "./hackme";
 
+import LoadLiveSpreadsheetsWorker from "./loadLiveSpreadsheets.worker";
+
 const gsjson = require('google-spreadsheet-to-json');
 
 const MAX_ATTEMPTS = 8;
-const CACHE_TIME = 300000;
+const CACHE_TIME = 3600000;
+
 
 class App extends Component {
+
+	searchString = "";
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			"searching": false,
 			"results": [
 				{
 					"name": "Searching for teachers...",
@@ -31,10 +35,23 @@ class App extends Component {
 		};
 	}
 
-	searchUpdate = async (event) => {
-		let searchResults = event.target.value === "" ? [] : this.state.results.filter(s =>
-			s.name.search(new RegExp(event.target.value, "ig")) !== -1
+	searchUpdateEvent = async (event) => {
+		this.searchString = event.target.value;
+
+		await this.searchUpdate(this.searchString);
+	};
+
+	searchUpdate = async (searchString) => {
+		let searchResults = searchString === "" ? [] : this.state.results.filter(s =>
+			s.name.search(new RegExp(searchString, "ig")) !== -1
 		);
+
+		if (!window.localStorage.getItem("spreadsheets") && searchString !== "") {
+			searchResults.unshift({
+				"name": "Updating Search Index...",
+				"websiteUrl": "#"
+			});
+		}
 
 		this.setState({
 			"search": searchResults
@@ -58,6 +75,58 @@ class App extends Component {
 	}
 
 	async loadLiveSpreadsheets(spreadsheets) {
+		let cachedSheets = JSON.parse(window.localStorage.getItem("spreadsheets")) || {};
+
+		console.info(`${Date.now()} - ${cachedSheets["date"]} < ${CACHE_TIME}: ${Date.now() - cachedSheets["date"] < CACHE_TIME}`)
+
+		if (Date.now() - cachedSheets["date"] < CACHE_TIME) {
+			console.info(`Cache is less than ${CACHE_TIME/1000} seconds old (${(Date.now() - cachedSheets["date"])/1000}s). Cache will be used.`);
+			this.setState({
+				"loaded": Number.MAX_VALUE
+			});
+			return;
+		}
+
+		if (window.Worker) {
+			console.info("Workers were detected - sites will be loaded in a separate thread.");
+			await this.loadLiveSpreadsheetsWorker(spreadsheets);
+		} else {
+			console.info("Workers were not detected. Falling back to ordinary javascript.");
+			await this.loadLiveSpreadsheetsFallback(spreadsheets);
+		}
+	}
+
+	async loadLiveSpreadsheetsWorker(spreadsheets) {
+		console.info("Starting worker.");
+		const worker = new LoadLiveSpreadsheetsWorker();
+		worker.postMessage([spreadsheets]);
+
+		return new Promise((resolve, reject) => {
+			worker.addEventListener("message", (msg) => {
+				switch (msg.data.status) {
+					case "finish":
+						this.setState(msg.data.state).then(() => this.searchUpdate(this.searchString));
+						resolve();
+						worker.terminate();
+						break;
+					case "update":
+						this.setState(msg.data.state).then(() => this.searchUpdate(this.searchString));
+						break;
+					case "cache":
+						window.localStorage.setItem(msg.data.cacheName, msg.data.toCache);
+						break;
+					case "log":
+						console.log(msg.data.msg);
+						break;
+					default:
+						reject(`Unrecognized status: ${msg.data.status}`);
+						break;
+				}
+			});
+		});
+	}
+
+	async loadLiveSpreadsheetsFallback(spreadsheets) {
 		let megaSpreadsheet = [];
 		let cachedSheets = JSON.parse(localStorage.getItem("spreadsheets")) || {};
 		let startTime = Date.now();
@@ -209,7 +278,7 @@ class App extends Component {
 				<input
 					type="text"
 					className="search-box center"
-					onChange={this.searchUpdate}
+					onChange={this.searchUpdateEvent}
 					onKeyDown={this.submitCheck}
 					placeholder="TYPE YOUR TEACHERS NAME"
 					style={margin}
@@ -217,10 +286,12 @@ class App extends Component {
 
 				{this.state.loaded < Config.spreadsheets.length &&
 					<p>
-						UPDATING WEBSITE LIST {this.state.loaded}/{Config.spreadsheets.length}
+						UPDATING TEACHER LIST {this.state.loaded}/{Config.spreadsheets.length}
 					</p>
 				}
-
+				<p className="lists">
+					FULL LISTS: <a href="https://goo.gl/LmygV5">ACS</a> <a href="https://goo.gl/Hdhvgs">LMS</a> <a href="https://goo.gl/BquK2h">LHS</a>
+				</p>
 				{this.state.search &&
 					<Results
 						results={this.state.search}
