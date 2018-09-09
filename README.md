@@ -1,9 +1,16 @@
 # Leonia Teacher Website Launcher
 
+*View the [live demo](https://leoniateachers.rubensoh.org/) at https://leoniateachers.rubensoh.org*.
+
+<img src="https://i.imgur.com/Pz4e1Uk.png" width="700" />
+
+
+<img src="https://i.imgur.com/L4lz5VC.png" width="700" />
+
 ## About
 
-The Leonia Teacher Website Launcher (TWL) is a client-side JAMStack Single Page Application designed
-for searching and launching the teacher websites of teachers in the Leonia School district.
+The Leonia Teacher Website Launcher (TWL) is a client-side JAMStack Single Page Application employing responsive,
+mobile-first design created for searching and launching the teacher websites of teachers in the Leonia School district.
 
 **The TWL uses the currently available Google Sheets spreadsheets as a data source, and will update accordingly
 when they are changed.** This means that the application is easily used, requiring no extra configuration or
