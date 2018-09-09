@@ -1,0 +1,28 @@
+{
+	"spreadsheets": [
+		{
+			"name": "LHS",
+			"id": "1qqXWOD6nWn33v1pM_Srx49CDf3k26d95Hhe-UYptEfQ",
+			"first_name": "firstName",
+			"last_name": "lastName",
+			"website_url": "website",
+			"email": "email"
+		},
+		{
+			"name": "ACS",
+			"id": "1stmN9hr-HC9pgihmJnEgLuvPfAGtzLi-fTIwnbhm5Ks",
+			"first_name": "firstName",
+			"last_name": "lastName",
+			"website_url": "teacherWebsites",
+			"email": "email"
+		},
+		{
+			"name": "LMS",
+			"id": "1gLRR-OXb1U537N6Avb6VQ9lFc5OcHBv8s4aYs7v0V28",
+			"first_name": "firstName",
+			"last_name": "lastName",
+			"website_url": "teacherWebsites",
+			"email": "email"
+		}
+	]
+}

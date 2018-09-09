@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+
+.App {
+
+}
+
+p {
+	font-family: 'Oswald', serif;
+	text-align: center;
+	font-size: 18px;
+	opacity: 0.25;
+}
+
+.search-box {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 33vh;
+	display: block;
+	width: calc(45% + 100px);
+	min-width: 260px;
+	border: 2px solid #22222211;
+	border-radius: 5px;
+	padding: 8px;
+	transition: border 0.5s, margin-top 0.3s;
+	font-size: 25px;
+	font-family: 'Oswald', serif;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.search-box:focus {
+	border: 2px solid #222;
+}
+
+.search-box::-webkit-input-placeholder {
+	opacity: 0.25;
+}
+
+.search-box::-moz-placeholder {
+	opacity: 0.25;
+}
+
+.search-box:-moz-placeholder {
+	opacity: 0.25;
+}
+
+.search-box:-ms-input-placeholder {
+	opacity: 0.25;
+}
+
+.search-box:focus::-webkit-input-placeholder {
+	opacity: 0;
+}
+
+.search-box:focus:-moz-placeholder {
+	opacity: 0;
+}
+
+.search-box:focus::-moz-placeholder {
+	opacity: 0;
+}
+
+.search-box:focus:-ms-input-placeholder {
+	opacity: 0;
+}
+
