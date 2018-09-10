@@ -76,8 +76,6 @@ class App extends Component {
 	async loadLiveSpreadsheets(spreadsheets) {
 		let cachedSheets = JSON.parse(window.localStorage.getItem("spreadsheets")) || {};
 
-		console.info(`${Date.now()} - ${cachedSheets["date"]} < ${CACHE_TIME}: ${Date.now() - cachedSheets["date"] < CACHE_TIME}`)
-
 		if (Date.now() - cachedSheets["date"] < CACHE_TIME) {
 			console.info(`Cache is less than ${CACHE_TIME/1000} seconds old (${(Date.now() - cachedSheets["date"])/1000}s). Cache will be used.`);
 			this.setState({
