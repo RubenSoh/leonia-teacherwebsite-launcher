@@ -60,7 +60,7 @@ class App extends Component {
 	};
 
 	submitCheck = (event) => {
-		if (event.key === "Enter") {
+		if (event.key === "Enter" && this.state.search.length !== 0) {
 			this.resultsRef.setState({
 				"modalOpen": true,
 				"selected": this.state.search[0]
