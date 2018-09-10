@@ -11,17 +11,21 @@
 	opacity: 0.5;
 }
 
+.content {
+	margin-top: 33vh;
+	transition:  margin-top 0.3s;
+}
+
 .search-box {
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 33vh;
 	display: block;
 	width: calc(45% + 100px);
 	min-width: 260px;
 	border: 2px solid #22222222;
 	border-radius: 5px;
 	padding: 8px;
-	transition: border 0.5s, margin-top 0.3s;
+	transition: border 0.5s;
 	font-size: 25px;
 	font-family: 'Oswald', serif;
 	text-align: center;

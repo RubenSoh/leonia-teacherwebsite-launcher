@@ -69,8 +69,6 @@ class App extends Component {
 	};
 
 	async componentDidMount() {
-		document.title = Config.title;
-
 		this.loadLiveSpreadsheets(Config.spreadsheets);
 		this.loadCachedSpreadsheets(Config.spreadsheets);
 	}
@@ -140,62 +138,64 @@ class App extends Component {
 			return;
 		}
 
+		let getSpreadsheet = async (spreadsheet) => {
+			// Load results from web
+			let spJson;
+			let attempt = 1;
+
+			const attemptToGetJson = async () => {
+				try {
+					console.info(`Attempting to get JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
+
+					spJson = await gsjson({
+						spreadsheetId: spreadsheet.id,
+						credentials: credentials
+					});
+
+					console.info(`Successfully got JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
+				} catch (e) {
+				}
+				if (!spJson) {
+					console.error(`Failed to get JSON for ${spreadsheet.id}.`);
+					attempt++;
+					if (attempt > MAX_ATTEMPTS) return;
+					await timeout(500);
+					await attemptToGetJson();
+				}
+			};
+
+			await attemptToGetJson();
+
+			if (!spJson) return;
+
+			for (let row of spJson) {
+				if (!(row[spreadsheet.first_name] && row[spreadsheet.last_name])) continue;
+				megaSpreadsheet.push({
+					"cache": false,
+					"spreadsheetId": spreadsheet.id,
+					"spreadsheetName": spreadsheet.name,
+					"name": `${row[spreadsheet.first_name]} ${row[spreadsheet.last_name]}`,
+					"websiteUrl": row[spreadsheet.website_url],
+					"email": row[spreadsheets.email]
+				});
+			}
+
+			megaSpreadsheet = megaSpreadsheet.filter(s => !(s.spreadsheetId === spreadsheet.id && s.cache));
+
+			this.setState({
+				"loaded": this.state.loaded + 1,
+				"results": megaSpreadsheet
+			}).then(() => {
+				this.clarifyNames();
+			});
+
+			cachedSheets[spreadsheet.id] = spJson;
+		};
+
 		let loadFuncs = [];
 
 		for (let spreadsheet of spreadsheets) {
-			loadFuncs.push((async () => {
-				// Load results from web
-				let spJson;
-				let attempt = 1;
-
-				const attemptToGetJson = async () => {
-					try {
-						console.info(`Attempting to get JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
-
-						spJson = await gsjson({
-							spreadsheetId: spreadsheet.id,
-							credentials: credentials
-						});
-
-						console.info(`Successfully got JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
-					} catch (e) {
-					}
-					if (!spJson) {
-						console.error(`Failed to get JSON for ${spreadsheet.id}.`);
-						attempt++;
-						if (attempt > MAX_ATTEMPTS) return;
-						await timeout(500);
-						await attemptToGetJson();
-					}
-				};
-
-				await attemptToGetJson();
-
-				if (!spJson) return;
-
-				for (let row of spJson) {
-					if (!(row[spreadsheet.first_name] && row[spreadsheet.last_name])) continue;
-					megaSpreadsheet.push({
-						"cache": false,
-						"spreadsheetId": spreadsheet.id,
-						"spreadsheetName": spreadsheet.name,
-						"name": `${row[spreadsheet.first_name]} ${row[spreadsheet.last_name]}`,
-						"websiteUrl": row[spreadsheet.website_url],
-						"email": row[spreadsheets.email]
-					});
-				}
-
-				megaSpreadsheet = megaSpreadsheet.filter(s => !(s.spreadsheetId === spreadsheet.id && s.cache));
-
-				this.setState({
-					"loaded": this.state.loaded + 1,
-					"results": megaSpreadsheet
-				}).then(() => {
-					this.clarifyNames();
-				});
-
-				cachedSheets[spreadsheet.id] = spJson;
-			})());
+			loadFuncs.push(getSpreadsheet(spreadsheet));
 		}
 
 		await Promise.all(loadFuncs);
@@ -271,19 +271,20 @@ class App extends Component {
 
 	render() {
 		const margin = {
-			"marginTop": (this.state.search.length > 0) ? "10vh" : "33vh"
+			"margin-top": (this.state.search.length > 0) ? "10vh" : "33vh"
 		};
 
 		return (
 			<div className="app">
-				<div className="content">
+				<div className="content"
+					 style={margin}
+				>
 					<input
 						type="text"
 						className="search-box center"
 						onChange={this.searchUpdateEvent}
 						onKeyDown={this.submitCheck}
 						placeholder="TYPE YOUR TEACHERS NAME"
-						style={margin}
 					/>
 
 					{this.state.loaded < Config.spreadsheets.length &&
@@ -312,12 +313,12 @@ class App extends Component {
 				}
 
 				<MetaTags>
-					<title>Leonia Schools Teacher Websites</title>
+					<title>{Config.title}</title>
 					<meta name="description"
 						  content="Search for the teacher websites of teachers in the Leonia Schools District, Anna C Scott (ACS), Leonia Middle School (LMS), and Leonia High School (LHS)"
 					/>
 					<meta property="og:title"
-						  content="Leonia Schools Teacher Website Search"
+						  content={Config.title}
 					/>
 				</MetaTags>
 			</div>
