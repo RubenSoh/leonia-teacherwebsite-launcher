@@ -275,7 +275,7 @@ class App extends Component {
 		};
 
 		return (
-			<div className="App">
+			<div className="app">
 				<div className="content">
 					<input
 						type="text"
