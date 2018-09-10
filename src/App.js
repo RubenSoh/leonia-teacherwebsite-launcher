@@ -47,7 +47,7 @@ class App extends Component {
 			s.name.search(new RegExp(searchString, "ig")) !== -1
 		);
 
-		if (!window.localStorage.getItem("spreadsheets") && searchString !== "") {
+		if (searchString !== "" && !window.localStorage.getItem("spreadsheets")) {
 			searchResults.unshift({
 				"name": "Updating Search Index...",
 				"websiteUrl": "#"
