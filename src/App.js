@@ -1,14 +1,15 @@
 import React, {Component} from "react";
-import timeout from "./timeout.js";
+import MetaTags from "react-meta-tags";
 import promisifySetState from 'promisify-setstate';
 
 import "./App.css";
 
+import timeout from "./timeout.js";
 import Results from "./Results.js";
+import LoadLiveSpreadsheetsWorker from "./loadLiveSpreadsheets.worker";
+
 import Config from "./config";
 import credentials from "./hackme";
-
-import LoadLiveSpreadsheetsWorker from "./loadLiveSpreadsheets.worker";
 
 const gsjson = require('google-spreadsheet-to-json');
 
@@ -275,36 +276,50 @@ class App extends Component {
 
 		return (
 			<div className="App">
-				<input
-					type="text"
-					className="search-box center"
-					onChange={this.searchUpdateEvent}
-					onKeyDown={this.submitCheck}
-					placeholder="TYPE YOUR TEACHERS NAME"
-					style={margin}
-				/>
-
-				{this.state.loaded < Config.spreadsheets.length &&
-					<p>
-						UPDATING TEACHER LIST {this.state.loaded}/{Config.spreadsheets.length}
-					</p>
-				}
-				<p className="lists">
-					FULL LISTS: <a href="https://goo.gl/LmygV5">ACS</a> <a href="https://goo.gl/Hdhvgs">LMS</a> <a href="https://goo.gl/BquK2h">LHS</a>
-				</p>
-				{this.state.search &&
-					<Results
-						results={this.state.search}
-						ref={(ref) => {
-							this.resultsRef = ref;
-						}}
+				<div className="content">
+					<input
+						type="text"
+						className="search-box center"
+						onChange={this.searchUpdateEvent}
+						onKeyDown={this.submitCheck}
+						placeholder="TYPE YOUR TEACHERS NAME"
+						style={margin}
 					/>
-				}
+
+					{this.state.loaded < Config.spreadsheets.length &&
+						<p>
+							UPDATING TEACHER LIST {this.state.loaded}/{Config.spreadsheets.length}
+						</p>
+					}
+
+					<p className="lists">
+						FULL LISTS: <a href="https://goo.gl/LmygV5">ACS</a> <a href="https://goo.gl/Hdhvgs">LMS</a> <a href="https://goo.gl/BquK2h">LHS</a>
+					</p>
+					{this.state.search &&
+						<Results
+							results={this.state.search}
+							ref={(ref) => {
+								this.resultsRef = ref;
+							}}
+						/>
+					}
+				</div>
+
 				{Config.footer &&
 					<div className="footer">
 						<p>{Config.footer}</p>
 					</div>
 				}
+
+				<MetaTags>
+					<title>Leonia Schools Teacher Websites</title>
+					<meta name="description"
+						  content="Search for the teacher websites of teachers in the Leonia Schools District, Anna C Scott (ACS), Leonia Middle School (LMS), and Leonia High School (LHS)"
+					/>
+					<meta property="og:title"
+						  content="Leonia Schools Teacher Website Search"
+					/>
+				</MetaTags>
 			</div>
 		);
 	}
