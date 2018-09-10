@@ -269,7 +269,7 @@ class App extends Component {
 
 	render() {
 		const margin = {
-			"margin-top": (this.state.search.length > 0) ? "10vh" : "33vh"
+			"marginTop": (this.state.search.length > 0) ? "10vh" : "33vh"
 		};
 
 		return (
