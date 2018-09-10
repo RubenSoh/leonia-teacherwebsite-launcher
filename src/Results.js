@@ -5,6 +5,8 @@ import "./Results.css";
 
 const RESULTS_MAX = 25;
 
+Modal.setAppElement("#root");
+
 class Results extends Component {
 
 	constructor(props) {
