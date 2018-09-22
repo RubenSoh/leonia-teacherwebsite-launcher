@@ -9,7 +9,6 @@ import Results from "./Results.js";
 import LoadLiveSpreadsheetsWorker from "./loadLiveSpreadsheets.worker";
 
 import Config from "./config";
-import credentials from "./hackme";
 
 const gsjson = require('google-spreadsheet-to-json');
 
@@ -146,8 +145,7 @@ class App extends Component {
 					console.info(`Attempting to get JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
 
 					spJson = await gsjson({
-						spreadsheetId: spreadsheet.id,
-						credentials: credentials
+						spreadsheetId: spreadsheet.id
 					});
 
 					console.info(`Successfully got JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);

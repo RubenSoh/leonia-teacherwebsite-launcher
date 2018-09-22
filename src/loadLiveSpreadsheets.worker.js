@@ -1,6 +1,5 @@
 const gsjson = require('google-spreadsheet-to-json');
 import timeout from './timeout'
-import credentials from "./hackme";
 
 const MAX_ATTEMPTS = 8;
 
@@ -32,8 +31,7 @@ async function onmessage(event) {
 					console.info(`Attempting to get JSON for ${spreadsheet.id || spreadsheet} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
 
 					spJson = await gsjson({
-						spreadsheetId: spreadsheet.id,
-						credentials: credentials
+						spreadsheetId: spreadsheet.id
 					});
 
 					console.info(`Successfully got JSON for ${spreadsheet.id} on attempt ${attempt} of ${MAX_ATTEMPTS}`);
