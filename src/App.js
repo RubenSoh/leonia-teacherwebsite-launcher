@@ -276,6 +276,7 @@ class App extends Component {
 					 style={margin}
 				>
 					<input
+						autoFocus
 						type="text"
 						className="search-box center"
 						onChange={this.searchUpdateEvent}
