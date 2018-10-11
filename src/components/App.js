@@ -144,7 +144,9 @@ class App extends Component {
 	}
 
 	static shouldUseCacheOnly() {
-		let dateDiff = Date.now() - localStorage.getItem("spreadsheets").date;
+		let cache = localStorage.getItem("spreadsheets");
+
+		let dateDiff = cache ? Date.now() - cache.date : Number.MAX_VALUE;
 
 		if (navigator.connection) {
 			console.info(`[DIAGNOSTICS] ${navigator.connection.type} with ${navigator.connection.effectiveType} speeds (${navigator.connection.downlink}mbps ${navigator.connection.rtt}ms).`);
