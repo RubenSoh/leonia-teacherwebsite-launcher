@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "google-spreadsheet-to-json": "^1.0.0",
     "promisify-setstate": "^0.3.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
@@ -18,6 +17,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "babel-plugin-require": "0.0.1",
     "react-app-rewired": "^1.6.2",
     "worker-loader": "^2.0.0"
   },

@@ -231,12 +231,11 @@ class App extends Component {
 				}
 
 				<MetaTags>
-					<title>{Config.title}</title>
 					<meta name="description"
 						  content="Search for the teacher websites of teachers in the Leonia Schools District, Anna C Scott (ACS), Leonia Middle School (LMS), and Leonia High School (LHS)"
 					/>
 					<meta property="og:title"
-						  content={Config.title}
+						  content="Teacher Websites"
 					/>
 				</MetaTags>
 			</div>
