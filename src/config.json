@@ -3,25 +3,25 @@
 		{
 			"name": "LHS",
 			"id": "1B8l00IT2X9h6j7iFvu2abAO2WyEIei6DLoYsU33GUp8",
-			"first_name": "firstName",
-			"last_name": "lastName",
+			"first_name": "firstname",
+			"last_name": "lastname",
 			"website_url": "website",
 			"email": "email"
 		},
 		{
 			"name": "ACS",
 			"id": "1q5GMaDAKSHnBIoZ4zz9iQrheQjCkjXK8q9gqFOralH0",
-			"first_name": "firstName",
-			"last_name": "lastName",
-			"website_url": "teacherWebsites",
+			"first_name": "firstname",
+			"last_name": "lastname",
+			"website_url": "teacherwebsites",
 			"email": "email"
 		},
 		{
 			"name": "LMS",
 			"id": "1m3QR1ZqopghCOv2nL0cHT7EZSjEvRKeup3fVmYdGlFA",
-			"first_name": "firstName",
-			"last_name": "lastName",
-			"website_url": "teacherWebsites",
+			"first_name": "firstname",
+			"last_name": "lastname",
+			"website_url": "teacherwebsites",
 			"email": "email"
 		}
 	],

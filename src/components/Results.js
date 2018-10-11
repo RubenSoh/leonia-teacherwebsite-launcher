@@ -64,9 +64,16 @@ class Results extends Component {
 						{this.state.selected.name}
 					</h2>
 
-					<p>
-						Website: {websiteLink}
-					</p>
+					<table>
+						<tr>
+							<th>Website</th>
+							<td>{websiteLink}</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>{this.state.selected.email}</td>
+						</tr>
+					</table>
 
 				</Modal>
 			</div>

@@ -37,9 +37,25 @@
 	font-family: 'Droid Sans', sans-serif;
 	color: black;
 	font-size: 20px;
-	text-align: center;
 	background-color: white;
-	overflow-wrap: break-word;
+}
+
+.resultModal > h2 {
+	text-align: center;
+}
+
+.resultModal table {
+	margin: auto;
+}
+
+.resultModal th, .resultModal td {
+	text-align: left;
+	font-weight: normal;
+	padding-right: 8px;
+}
+
+.resultModal td {
+	word-break: break-word;
 }
 
 .resultModal:focus {
