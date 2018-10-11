@@ -22,12 +22,7 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			"results": [
-				{
-					"name": "Searching for teachers...",
-					"websiteUrl": "#"
-				}
-			],
+			"results": [],
 			"search": [],
 			"loaded": 0,
 			"showUpdating": false,
