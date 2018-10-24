@@ -4,10 +4,7 @@
 	font-family: 'Oswald', serif;
 	text-align: center;
 	font-size: 18px;
-	opacity: 0.5;
-}
-
-.content > p.lists {
+	width: 100%;
 	opacity: 0.5;
 }
 
@@ -66,19 +63,19 @@
 	opacity: 0.5;
 }
 
-.search-box:focus::-webkit-input-placeholder {
+.search-box:indeterminate::-webkit-input-placeholder {
 	opacity: 0;
 }
 
-.search-box:focus:-moz-placeholder {
+.search-box:indeterminate:-moz-placeholder {
 	opacity: 0;
 }
 
-.search-box:focus::-moz-placeholder {
+.search-box:indeterminate::-moz-placeholder {
 	opacity: 0;
 }
 
-.search-box:focus:-ms-input-placeholder {
+.search-box:indeterminate:-ms-input-placeholder {
 	opacity: 0;
 }
 
