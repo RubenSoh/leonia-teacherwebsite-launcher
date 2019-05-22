@@ -49,7 +49,7 @@ class App extends Component {
 		}
 
 		this.setState({
-			"search": searchResults
+			"search": searchResults.sort()
 		});
 	};
 
