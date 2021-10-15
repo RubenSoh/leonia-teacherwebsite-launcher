@@ -219,11 +219,9 @@ class App extends Component {
 					}
 				</div>
 
-				{Config.footer &&
-					<div className="footer">
-						<p>{Config.footer}</p>
-					</div>
-				}
+				<div className="footer">
+					<p>Created by Ruben Soh / <a href="https://github.com/RubenSoh/leonia-teacherwebsite-launcher">GitHub</a></p>
+				</div>
 
 				<MetaTags>
 					<meta name="description"
