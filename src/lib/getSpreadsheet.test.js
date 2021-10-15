@@ -1,4 +1,4 @@
-import {getSpreadsheet, getSpreadsheetJson, getSpreadsheetUrl, parseSpreadsheetJson } from "./getSpreadsheet";
+import {getSpreadsheet, getSpreadsheetUrl, parseSpreadsheetJson } from "./getSpreadsheet";
 
 import fs from "fs";
 
@@ -17,24 +17,19 @@ describe("Spreadsheet Retrieval", () => {
 		verifyData(await getSpreadsheet("test", "test"))
 	});
 
-	it("should correctly parse test data", async () => {
-		verifyData(parseSpreadsheetJson(testData1Json));
-	});
-
 	it("should validate input", async () => {
-		expect(() => getSpreadsheetUrl()).toThrow();
-		expect(() => getSpreadsheetUrl("test")).not.toThrow();
+		expect(() => getSpreadsheet()).toThrow();
+		expect(() => getSpreadsheet("test")).not.toThrow();
 	});
 
 });
 
 function verifyData(json) {
 	json.forEach(row => {
-		expect(row).toHaveProperty("firstname");
-		expect(row).toHaveProperty("lastname");
-		expect(row).toHaveProperty("phoneext");
-		expect(row).toHaveProperty("email");
-		expect(row).toHaveProperty("position");
+		expect(row).toHaveProperty("First Name");
+		expect(row).toHaveProperty("Last Name");
+		expect(row).toHaveProperty("Position");
+		expect(row).toHaveProperty("Teacher Websites");
 
 		expect(row).not.toHaveProperty("href");
 		expect(row).not.toHaveProperty("rel");

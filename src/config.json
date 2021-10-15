@@ -3,26 +3,29 @@
 		{
 			"name": "LHS",
 			"id": "1B8l00IT2X9h6j7iFvu2abAO2WyEIei6DLoYsU33GUp8",
-			"first_name": "firstname",
-			"last_name": "lastname",
-			"website_url": "website",
-			"email": "email"
+			"first_name": "First Name",
+			"last_name": "Last Name",
+			"website_url": "Website",
+			"email": "Email",
+			"sheet_name": "LHS Staff Directory"
 		},
 		{
 			"name": "ACS",
 			"id": "1q5GMaDAKSHnBIoZ4zz9iQrheQjCkjXK8q9gqFOralH0",
-			"first_name": "firstname",
-			"last_name": "lastname",
-			"website_url": "teacherwebsites",
-			"email": "email"
+			"first_name": "First Name",
+			"last_name": "Last Name",
+			"website_url": "Website",
+			"email": "Email",
+			"sheet_name": "ACS Staff Directory"
 		},
 		{
 			"name": "LMS",
 			"id": "1m3QR1ZqopghCOv2nL0cHT7EZSjEvRKeup3fVmYdGlFA",
-			"first_name": "firstname",
-			"last_name": "lastname",
-			"website_url": "teacherwebsites",
-			"email": "email"
+			"first_name": "First Name",
+			"last_name": "Last Name",
+			"website_url": "Teacher Websites",
+			"email": "Email",
+			"sheet_name": "LMS Staff Directory"
 		}
 	],
 	"footer": "Created by Ruben Soh",

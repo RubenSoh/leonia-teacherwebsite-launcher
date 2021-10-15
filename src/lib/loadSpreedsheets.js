@@ -37,7 +37,7 @@ export function loadSpreadsheets(spreadsheets, storage, cacheOnly) {
 	if (!cacheOnly) {
 		spreadsheets.forEach(async spreadsheet => {
 			let liveSpreadsheetLoadingStartTime = Date.now();
-			let json = await getSpreadsheet(spreadsheet.id);
+			let json = await getSpreadsheet(spreadsheet.id, spreadsheet.sheet_name);
 			cachedSheets[spreadsheet.id] = json;
 
 			loaded++;
